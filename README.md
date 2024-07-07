@@ -79,19 +79,20 @@ To set up the database, follow these steps:
     ```sql
     SOURCE sample_queries.sql;
     ```
-## Usage
+### Usage
 
 Run the following query to see all menu items:
 ```sql
 SELECT MenuItemID, ItemName, Description, BasePrice FROM MenuItems;
+   ```
 
-Documentation
-Detailed documentation can be found in the "DOCUMENTATION.md" file.
+** Documentation
+Detailed documentation can be found in the "DOCUMENTATION.md" file. 
 
-License
+** License
 This project is licensed under the MIT License - see the " LICENSE" file for details.
 
-Contact
+** Contact
 For any inquiries, please contact me at moseskorom82@gmail.com 
 
 
