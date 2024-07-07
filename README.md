@@ -12,10 +12,12 @@ This project involves creating a database for Cardinal Pizza and Hoagies (CPH), 
 - **Menu Management:** Maintain a list of menu items, their descriptions, prices, ingredients, sizes, and categories.
 - **Sales Tracking:** Monitor sales by category, menu item, payment method, and customer.
 - **Cost Management:** Calculate the total cost of each menu item based on its ingredients.
+
+  ### Advanced SQL features: 
 - **Foreign Key Constraints**: Ensuring referential integrity between related tables
 - **Triggers for Automation**: Automating repetitive tasks and maintaining data consistency
 - **Indexes for Performance**: Enhancing query performance
-- 
+  
 
 ## Database Schema
 
@@ -34,7 +36,7 @@ The database schema includes the following tables:
 ### Prerequisites
 
 - MySQL installed on your system
-- 
+  
 ### Installation
 
 To set up the database, follow these steps:
