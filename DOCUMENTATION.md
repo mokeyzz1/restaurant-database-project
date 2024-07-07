@@ -1,5 +1,3 @@
-#### DOCUMENTATION.md
-
 ### markdown
 # Project Documentation
 
@@ -8,8 +6,9 @@
 
 Description: The Cardinal Pizza and Hoagies database project aims to create an efficient online ordering system for a small restaurant. This system enables customers to place orders online, facilitates order management for the restaurant staff, and tracks inventory to ensure timely order fulfillment. 
 
+Purpose: The goal is to enhance customer service by providing a seamless ordering experience, optimizing operational efficiency through automated order processing, and improving decision-making with data-driven insights from the database. 
 
-Purpose: The goal is to enhance customer service by providing a seamless ordering experience, optimize operational efficiency through automated order processing, and improve decision-making with data-driven insights from the database. 
+Audience: This documentation is intended for developers, stakeholders interested in restaurant operations, and potential employers seeking insight into your database design and implementation skills. 
 
 ## Database Design
 ### Entity Relationship Diagram
@@ -25,6 +24,7 @@ The database is designed to support the following use cases:
 
 ## Schema Description
 
+```sql
 ## Customers: 
 CustomerID (INT, PK, Auto Increment) 
 FirstName (VARCHAR(50), NOT NULL) 
@@ -73,12 +73,14 @@ OrderID (INT, FK references Orders(OrderID))
 MenuItemID (INT, FK references MenuItems(MenuItemID))
 SizeID (INT, FK references Sizes(SizeID)) 
 Quantity (INT, NOT NULL) 
-Price (DECIMAL(10, 2), NOT NULL) 
+Price (DECIMAL(10, 2), NOT NULL)
+```
 
 ## Sample Data and Transactions 
 
-## Sample Data Insertion
+### Sample Data Insertion
 
+```sql
 -- Sample data for Customers table
 INSERT INTO Customers (FirstName, LastName, Address, PhoneNumber, Email)
 VALUES 
@@ -150,13 +152,51 @@ VALUES
 (1, 5, 2, 1, 1.99), -- Order 1: Coke (Medium)
 (2, 2, 2, 1, 7.99), -- Order 2: Cheese Pizza (Medium)
 (3, 4, 1, 2, 6.99); -- Order 3: Greek Salad (Small)
+```
 
- 
+
+## Advanced SQL Features
+
+### Foreign Key Constraints
+
+Foreign key constraints are used to maintain referential integrity between tables. For example, in the `Orders` table, the `CustomerID` field is a foreign key referencing the `CustomerID` field in the `Customers` table.
+
+### Triggers for Automation
+
+Triggers are used to automate certain actions in the database. For example, the `update_total_amount` trigger updates the total amount of an order whenever a new item is added to the order.
+
+### Indexes for Performance
+
+Indexes are created on frequently queried fields to improve performance. For example, an index is created on the `OrderDateTime` field in the `Orders` table.
+
+### Stored Procedures
+
+Stored procedures are used to encapsulate complex queries and can be called with parameters. For example, the `GetCustomerOrders` stored procedure retrieves all orders for a specific customer.
+
+### Views
+
+Views are virtual tables that represent the result of a query. For example, the `OrderSummary` view provides a summary of orders, including customer names and total amounts.
+
+## Triggers
+
+### Example Trigger
+
+```sql
+CREATE TRIGGER update_order_status
+AFTER INSERT ON Orders
+FOR EACH ROW
+BEGIN
+    UPDATE Orders
+    SET OrderStatus = 'in progress'
+    WHERE OrderID = NEW.OrderID;
+END;
+```
+
 
 ## Example Queries
 
 ### Get all menu items with their categories
-
+```sql
 SELECT 
     MenuItems.ItemName, 
     Categories.CategoryName, 
@@ -174,4 +214,7 @@ FROM Ingredients
 JOIN MenuItemIngredients ON Ingredients.IngredientID = MenuItemIngredients.IngredientID
 JOIN MenuItems ON MenuItemIngredients.MenuItemID = MenuItems.MenuItemID
 WHERE MenuItems.MenuItemID = 1;
+```
+
+
 
