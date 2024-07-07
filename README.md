@@ -89,10 +89,10 @@ Documentation
 Detailed documentation can be found in the "DOCUMENTATION.md" file.
 
 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the " LICENSE" file for details.
 
 Contact
-For any inquiries, please contact me at moseskorom82@gmail.com
+For any inquiries, please contact me at moseskorom82@gmail.com 
 
 
 
