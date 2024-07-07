@@ -13,7 +13,7 @@ Audience: This documentation is intended for developers, stakeholders interested
 ## Database Design
 ### Entity Relationship Diagram
 
-Go to [erd] /assets/images/ERD.png
+Go to [erd]
 
 
 The database is designed to support the following use cases:
