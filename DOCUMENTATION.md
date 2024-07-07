@@ -13,7 +13,7 @@ Audience: This documentation is intended for developers, stakeholders interested
 ## Database Design
 ### Entity Relationship Diagram
 
-
+ERD.png 
 
 The database is designed to support the following use cases:
 * Customer can place an order online
