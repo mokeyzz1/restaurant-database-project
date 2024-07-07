@@ -13,7 +13,6 @@ Audience: This documentation is intended for developers, stakeholders interested
 ## Database Design
 ### Entity Relationship Diagram
 
-![restaurant](https://github.com/mokeyzz1/restaurant-database-project/assets/174388353/1a03dde6-baf6-45f3-a872-ab4d0cdd9103)
 
 [ERD.png] 
 
