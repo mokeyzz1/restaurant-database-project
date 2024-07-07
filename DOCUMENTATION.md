@@ -1,5 +1,5 @@
-### markdown
-# Project Documentation
+```markdown
+# Restaurant Database Project Documentation
 
 ## Overview
 
@@ -13,7 +13,7 @@ Audience: This documentation is intended for developers, stakeholders interested
 ## Database Design
 ### Entity Relationship Diagram
 
-/Users/mk/DataGripProjects/Project/restaurant.png
+
 
 The database is designed to support the following use cases:
 * Customer can place an order online
