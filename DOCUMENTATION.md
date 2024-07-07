@@ -13,7 +13,8 @@ Audience: This documentation is intended for developers, stakeholders interested
 ## Database Design
 ### Entity Relationship Diagram
 
-[ERD](https://github.com/mokeyzz1/restaurant-database-project/blob/master/ERD.png)
+Go to [erd] /assets/images/ERD.png
+
 
 The database is designed to support the following use cases:
 * Customer can place an order online
@@ -177,21 +178,68 @@ Stored procedures are used to encapsulate complex queries and can be called with
 
 Views are virtual tables that represent the result of a query. For example, the `OrderSummary` view provides a summary of orders, including customer names and total amounts.
 
-## Triggers
+## Additional Database Features
 
-### Example Trigger
-
+### Stored Procedures
+### Example stored procedure to get customer orders:
 ```sql
-CREATE TRIGGER update_order_status
-AFTER INSERT ON Orders
-FOR EACH ROW
+DELIMITER //
+CREATE PROCEDURE GetCustomerOrders(IN customerID INT)
 BEGIN
-    UPDATE Orders
-    SET OrderStatus = 'in progress'
-    WHERE OrderID = NEW.OrderID;
-END;
+    SELECT * FROM Orders WHERE CustomerID = customerID;
+END //
+DELIMITER ;
 ```
 
+### Views
+### Example view to list all menu items with their category names:
+```sql
+CREATE VIEW MenuItemsView AS
+SELECT 
+    MenuItems.ItemName, 
+    Categories.CategoryName, 
+    MenuItems.Description, 
+    MenuItems.BasePrice
+FROM 
+    MenuItems
+JOIN 
+    Categories ON MenuItems.CategoryID = Categories.CategoryID;
+Foreign Key Constraints
+Example foreign key constraints:
+```
+
+### Foreign Key Constraints
+### Example foreign key constraints:
+```sql
+ALTER TABLE MenuItems
+ADD CONSTRAINT FK_Category FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID);
+
+ALTER TABLE Orders
+ADD CONSTRAINT FK_Customer FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID);
+```
+
+### Indexes
+### Example indexes for better performance:
+
+```sql
+CREATE INDEX idx_customer_email ON Customers (Email);
+CREATE INDEX idx_order_date ON Orders (OrderDateTime);
+```
+
+### Triggers
+### Example trigger to update order status:
+```sql
+DELIMITER //
+CREATE TRIGGER BeforeOrderUpdate
+BEFORE UPDATE ON Orders
+FOR EACH ROW
+BEGIN
+    IF NEW.OrderStatus = 'Completed' THEN
+        SET NEW.OrderDateTime = NOW();
+    END IF;
+END //
+DELIMITER ;
+```
 
 ## Example Queries
 
@@ -215,6 +263,74 @@ JOIN MenuItemIngredients ON Ingredients.IngredientID = MenuItemIngredients.Ingre
 JOIN MenuItems ON MenuItemIngredients.MenuItemID = MenuItems.MenuItemID
 WHERE MenuItems.MenuItemID = 1;
 ```
+
+### Functionality Implemented 
+Core Features: 
+* Online order placement (pickup/delivery) 
+* Customer registration and management 
+* Menu item management (add/edit/delete) 
+* Order processing and management (status tracking, payment handling) 
+* Reporting and analytics (sales reports, customer preferences) 
+
+### Testing Documentation 
+Testing Plan: 
+* Functional testing: Ensure all features work as expected (e.g., order placement, menu item management). 
+* Performance testing: Evaluate system response times under load (e.g., order peak times).
+
+### Test Cases and Results: 
+
+This document provides detailed information about the database schema, including tables, fields, foreign key constraints, triggers, indexes, views, and stored procedures.
+
+To list all stored procedures in the database:
+```sql
+SHOW PROCEDURE STATUS WHERE Db = 'restaurant';
+
+Views
+To list all views in the database:
+SHOW FULL TABLES IN restaurant WHERE TABLE_TYPE LIKE 'VIEW';
+
+
+Foreign Key Constraints
+To list all foreign key constraints:
+SELECT 
+    table_name, 
+    column_name, 
+    constraint_name, 
+    referenced_table_name, 
+    referenced_column_name 
+FROM 
+    information_schema.key_column_usage 
+WHERE 
+    referenced_table_schema = 'restaurant';
+
+
+Indexes
+To list all indexes:
+SHOW INDEXES FROM Customers;
+SHOW INDEXES FROM Categories;
+SHOW INDEXES FROM Sizes;
+SHOW INDEXES FROM MenuItems;
+SHOW INDEXES FROM Ingredients;
+SHOW INDEXES FROM MenuItemIngredients;
+SHOW INDEXES FROM Orders;
+SHOW INDEXES FROM OrderItems;
+
+
+Triggers
+To list all triggers:
+SHOW TRIGGERS;
+```
+
+### Difficulties Faced
+* Designing the Schema: Ensuring the schema was normalized and relationships were properly defined was challenging.
+* Handling Foreign Keys: Implementing and ensuring the correctness of foreign key constraints required careful planning.
+* Data Insertion: Inserting sample data that aligns with the schema and constraints required precision.
+* Index Optimization: Creating indexes to optimize query performance without degrading insert/update performance was a balance.
+* Database Restoration: Recovering and ensuring data integrity after an accidental data wipe.
+
+
+
+ 
 
 
 
