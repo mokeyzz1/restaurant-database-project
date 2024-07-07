@@ -13,8 +13,7 @@ Audience: This documentation is intended for developers, stakeholders interested
 ## Database Design
 ### Entity Relationship Diagram
 
-
-[ERD.png] 
+[ERD](https://github.com/mokeyzz1/restaurant-database-project/blob/master/ERD.png)
 
 The database is designed to support the following use cases:
 * Customer can place an order online
