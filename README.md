@@ -86,13 +86,13 @@ Run the following query to see all menu items:
 SELECT MenuItemID, ItemName, Description, BasePrice FROM MenuItems;
    ```
 
-** Documentation
-Detailed documentation can be found in the "DOCUMENTATION.md" file. 
+# Documentation
+Detailed documentation can be found in the [DOCUMENTATION.md](https://github.com/mokeyzz1/restaurant-database-project/blob/master/DOCUMENTATION.md) file. 
 
-** License
+# License
 This project is licensed under the MIT License - see the " LICENSE" file for details.
 
-** Contact
+# Contact
 For any inquiries, please contact me at moseskorom82@gmail.com 
 
 
